@@ -41,8 +41,18 @@ const SignInForm = () => {
         password
       );
       console.log(response);
+      resetFormFields();
     } catch (error) {
-      console.error(error);
+      switch (error.code) {
+        case 'auth/wrong-password':
+          alert('Wrong password');
+          break;
+        case 'auth/user-not-found':
+          alert('User not found');
+          break;
+        default:
+          alert('Something went wrong');
+      }
     }
   };
 
